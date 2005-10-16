@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Qucs
+Exec=qucs
+Name[fr_FR]=qucs
+Comment=Qucs is a electronic circuit simulator
+Comment[fr]=Qucs est un simulateur de circuits électroniques
+Terminal=false
+Type=Application
+Icon=/usr/share/qucs/bitmaps/big.qucs.xpm
+Categories=Application;Electronics;Engineering;
