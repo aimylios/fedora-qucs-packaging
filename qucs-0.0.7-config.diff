@@ -1,0 +1,26 @@
+--- qucs-0.0.7.orig/configure.ac	2005-07-21 23:11:22.000000000 +0200
++++ qucs-0.0.7/configure.ac	2005-10-18 09:37:56.000000000 +0200
+@@ -37,8 +37,8 @@
+   QT_DEF=""
+ else
+   AC_DEFINE(NDEBUG, 1, [Define if debug code should be suppressed.])
+-  CFLAGS="-O2"
+-  CXXFLAGS="-O2"
++#  CFLAGS="-O2"
++#  CXXFLAGS="-O2"
+   QT_DEF="-DQT_NO_DEBUG"
+ fi
+ unset enable_debug
+--- qucs-0.0.7.orig/configure	2005-07-21 23:19:03.000000000 +0200
++++ qucs-0.0.7/configure	2005-10-18 09:38:23.000000000 +0200
+@@ -3547,8 +3547,8 @@
+ #define NDEBUG 1
+ _ACEOF
+ 
+-  CFLAGS="-O2"
+-  CXXFLAGS="-O2"
++#  CFLAGS="-O2"
++#  CXXFLAGS="-O2"
+   QT_DEF="-DQT_NO_DEBUG"
+ fi
+ unset enable_debug

@@ -1,11 +1,10 @@
-#
-
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.7
-Release: 	5%{?dist}
+Release: 	6%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
+Patch0:		qucs-0.0.7-config.diff
 URL:		http://qucs.sourceforge.net/
 License:	GPL 
 Group: 		Applications/Engineering
@@ -22,6 +21,7 @@ e.g. DC, AC, S-parameter and harmonic balance analysis.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 [ -n "$QTDIR" ] || . %{_sysconfdir}/profile.d/qt.sh
@@ -52,6 +52,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Tue Oct 18 2005 Ralf Corsepius <rc040203@freenet.de> - 0.0.7-6
+- Add qucs-0.0.7-config.diff to make configure script aware of RPM_OPT_FLAGS.
+
 * Tue Oct 11 2005 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.7-5
 -add qucs.desktop
 -modify buildroot
