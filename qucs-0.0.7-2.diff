@@ -1,0 +1,21 @@
+diff -ur qucs-0.0.7-orig/qucs/qucsview.cpp qucs-0.0.7/qucs/qucsview.cpp
+--- qucs-0.0.7-orig/qucs/qucsview.cpp	Thu Jul 21 21:23:19 2005
++++ qucs-0.0.7/qucs/qucsview.cpp	Fri Aug 26 19:21:33 2005
+@@ -539,7 +539,7 @@
+       else {  if(long(pw->Port1) & 1) { pw->x1 += MAx1; }
+               if(long(pw->Port1) & 2) { pw->y1 += MAy1; } }
+ 
+-      if(int(pw->Port2) > 3) { pw->x2 += MAx1;  pw->y2 += MAy1; }
++      if(((unsigned long)pw->Port2) > 3) { pw->x2 += MAx1;  pw->y2 += MAy1; }
+       else {  if(long(pw->Port2) & 1) pw->x2 += MAx1;
+               if(long(pw->Port2) & 2) pw->y2 += MAy1; }
+ 
+@@ -725,7 +725,7 @@
+       else {  if(long(pw->Port1) & 1) { pw->x1 += MAx1; }
+               if(long(pw->Port1) & 2) { pw->y1 += MAy1; } }
+ 
+-      if(int(pw->Port2) > 3) { pw->x2 += MAx1;  pw->y2 += MAy1; }
++      if(((unsigned long)pw->Port2) > 3) { pw->x2 += MAx1;  pw->y2 += MAy1; }
+       else {  if(long(pw->Port2) & 1) pw->x2 += MAx1;
+               if(long(pw->Port2) & 2) pw->y2 += MAy1; }
+ 
