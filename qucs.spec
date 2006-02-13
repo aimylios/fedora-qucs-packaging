@@ -1,18 +1,17 @@
 Summary:	Circuit simulator
 Name: 		qucs
-Version:	0.0.7
-Release: 	8%{?dist}
+Version:	0.0.8
+Release: 	1%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
-Patch0:		qucs-0.0.7-config.diff
-Patch1:		qucs-0.0.7-2.diff
+#Patch0:		qucs-gcc4.1.diff
 URL:		http://qucs.sourceforge.net/
 License:	GPL 
 Group: 		Applications/Engineering
 BuildRoot:    	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: desktop-file-utils
 BuildRequires: qt-devel
-
+Requires: freehdl
 
 
 %description
@@ -22,11 +21,13 @@ e.g. DC, AC, S-parameter and harmonic balance analysis.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
 
 %build
 [ -n "$QTDIR" ] || . %{_sysconfdir}/profile.d/qt.sh
+%if "%{?fedora}" > "4"
+CXXFLAGS="${RPM_OPT_FLAGS} -ffriend-injection"
+%endif
 %configure
 make %{?_smp_mflags}
 
@@ -54,6 +55,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Mon Jan 23 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.8-1
+- Update to 0.0.8
+- Add -ffriend-injection to $RPM_OPT_FLAGS for building against gcc-4.1
+ 
 * Fri Nov 4 2005 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.7-8
 - Modify ctaegories in qucs.desktop
 
