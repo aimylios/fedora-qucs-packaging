@@ -1,6 +1,6 @@
 Summary:	Circuit simulator
 Name: 		qucs
-Version:	0.0.8
+Version:	0.0.9
 Release: 	1%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
@@ -55,6 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Mon May 29 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-1
+- Update to 0.0.9
+
 * Mon Jan 23 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.8-1
 - Update to 0.0.8
 - Add -ffriend-injection to $RPM_OPT_FLAGS for building against gcc-4.1
