@@ -1,7 +1,7 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.9
-Release: 	2%{?dist}
+Release: 	3%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 #Patch0:		qucs-gcc4.1.diff
@@ -25,7 +25,7 @@ e.g. DC, AC, S-parameter and harmonic balance analysis.
 
 %build
 [ -n "$QTDIR" ] || . %{_sysconfdir}/profile.d/qt.sh
-%configure
+%configure --disable-dependency-tracking --enable-debug
 make %{?_smp_mflags}
 
 # install will be a bit complicated because we are not assured
@@ -38,7 +38,7 @@ desktop-file-install --vendor fedora                            \
         --dir ${RPM_BUILD_ROOT}%{_datadir}/applications         \
         --add-category X-Fedora                                 \
         %{SOURCE1}
-
+rm ${RPM_BUILD_ROOT}%{_bindir}/qucsdigi.bat
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -52,8 +52,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Sat Jun 10 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-3
+- Delete %{_bindir}/qucsdigi.bat which is a windows bat file and useless under linux
+- add --disable-dependency-tracking to %configure
+- add --enable-debug to %configure to make debuginfo package usefull
+
+
 * Thu Jun 01 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-2
-- Delete ${RPM_OPT_FLAGS} modification using -ffriend-injection for "%{?fedora}" > "4"
+- Delete ${RPM_OPT_FLAGS} modification using -ffriend-injection for "%%{?fedora}" > "4"
 
 * Mon May 29 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-1
 - Update to 0.0.9
