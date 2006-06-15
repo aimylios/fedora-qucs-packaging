@@ -1,7 +1,7 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.9
-Release: 	3%{?dist}
+Release: 	4%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 #Patch0:		qucs-gcc4.1.diff
@@ -52,11 +52,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Sat Jun 10 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-4
+- Solve typo problem in changelog
+
 * Sat Jun 10 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-3
 - Delete %{_bindir}/qucsdigi.bat which is a windows bat file and useless under linux
-- add --disable-dependency-tracking to %configure
-- add --enable-debug to %configure to make debuginfo package usefull
-
+- add --disable-dependency-tracking to %%configure
+- add --enable-debug to %%configure to make debuginfo package usefull
 
 * Thu Jun 01 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-2
 - Delete ${RPM_OPT_FLAGS} modification using -ffriend-injection for "%%{?fedora}" > "4"
