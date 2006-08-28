@@ -1,7 +1,7 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.9
-Release: 	4%{?dist}
+Release: 	5%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 #Patch0:		qucs-gcc4.1.diff
@@ -52,6 +52,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Mon Aug 28 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-5
+- Rebuild for Fedora Extras 6
+
 * Sat Jun 10 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-4
 - Solve typo problem in changelog
 
