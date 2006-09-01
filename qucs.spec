@@ -1,10 +1,9 @@
 Summary:	Circuit simulator
 Name: 		qucs
-Version:	0.0.9
-Release: 	4%{?dist}
+Version:	0.0.10
+Release: 	1%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
-#Patch0:		qucs-gcc4.1.diff
 URL:		http://qucs.sourceforge.net/
 License:	GPL 
 Group: 		Applications/Engineering
@@ -21,7 +20,6 @@ e.g. DC, AC, S-parameter and harmonic balance analysis.
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
 [ -n "$QTDIR" ] || . %{_sysconfdir}/profile.d/qt.sh
@@ -38,7 +36,6 @@ desktop-file-install --vendor fedora                            \
         --dir ${RPM_BUILD_ROOT}%{_datadir}/applications         \
         --add-category X-Fedora                                 \
         %{SOURCE1}
-rm ${RPM_BUILD_ROOT}%{_bindir}/qucsdigi.bat
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -52,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Fri Sep 01 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.10-1
+- Update to 0.0.10
+
 * Sat Jun 10 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-4
 - Solve typo problem in changelog
 
