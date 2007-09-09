@@ -1,7 +1,7 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.12
-Release: 	2%{?dist}
+Release: 	3%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://qucs.sourceforge.net/
@@ -50,6 +50,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Sun Sep 09 2007 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.12-3
+- Modifiy qucs.desktop BZ 283941
+
 * Sun Jun 17 2007 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.12-2
 - Add perl and iverilog as require
 
