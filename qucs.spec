@@ -50,6 +50,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Sun Sep 09 2007 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.12-3
+- Modifiy qucs.desktop BZ 283941
+
 * Wed Aug 29 2007 Fedora Release Engineering <rel-eng at fedoraproject dot org> - 0.0.12-3
 - Rebuild for selinux ppc32 issue.
 
