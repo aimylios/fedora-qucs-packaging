@@ -1,13 +1,13 @@
 Summary:	Circuit simulator
 Name: 		qucs
-Version:	0.0.12
-Release: 	4%{?dist}
+Version:	0.0.13
+Release: 	1%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://qucs.sourceforge.net/
-License:	GPL 
+License:	GPL+
 Group: 		Applications/Engineering
-BuildRoot:    	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: desktop-file-utils
 BuildRequires: qt-devel
 Requires: freehdl, perl, iverilog
@@ -32,10 +32,10 @@ make %{?_smp_mflags}
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/applications
-desktop-file-install --vendor fedora                            \
-        --dir ${RPM_BUILD_ROOT}%{_datadir}/applications         \
-        --add-category X-Fedora                                 \
-        %{SOURCE1}
+desktop-file-install --vendor fedora \
+	--dir ${RPM_BUILD_ROOT}%{_datadir}/applications \
+	--add-category X-Fedora \
+	%{SOURCE1}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -50,6 +50,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Tue Jan 01 2008 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.13-1
+- Update to 0.0.13
+
 * Sun Sep 09 2007 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.12-4
 - Modifiy qucs.desktop BZ 283941
 
