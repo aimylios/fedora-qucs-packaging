@@ -9,7 +9,7 @@ License:	GPL+
 Group: 		Applications/Engineering
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: desktop-file-utils
-BuildRequires: qt-devel
+BuildRequires: qt3-devel
 Requires: freehdl, perl, iverilog
 
 
