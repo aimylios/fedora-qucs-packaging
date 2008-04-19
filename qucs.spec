@@ -53,12 +53,6 @@ rm -rf $RPM_BUILD_ROOT
 * Sat Apr 05 2008 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.14-1
 - Update to 0.0.14
 
-* Sat Apr 05 2008 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.13-3
-- Modify BR from qt-devel to qt3-devel
-
-* Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 0.0.13-2
-- Autorebuild for GCC 4.3
-
 * Tue Jan 01 2008 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.13-1
 - Update to 0.0.13
 
