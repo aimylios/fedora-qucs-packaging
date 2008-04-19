@@ -1,6 +1,6 @@
 Summary:	Circuit simulator
 Name: 		qucs
-Version:	0.0.13
+Version:	0.0.14
 Release: 	1%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
@@ -50,6 +50,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Sat Apr 05 2008 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.14-1
+- Update to 0.0.14
+
 * Tue Jan 01 2008 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.13-1
 - Update to 0.0.13
 
