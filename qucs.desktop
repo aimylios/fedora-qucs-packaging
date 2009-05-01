@@ -9,4 +9,4 @@ Comment[fr]=Qucs est un simulateur de circuits électroniques
 Terminal=false
 Type=Application
 Icon=/usr/share/qucs/bitmaps/big.qucs.xpm
-Categories=Science;Engineering;
+Categories=Electronics;Engineering;
