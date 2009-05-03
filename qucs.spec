@@ -1,9 +1,10 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.15
-Release: 	1%{?dist}
+Release: 	2%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
+Patch0:		qucs-0.0.15-qucsdigi.patch
 URL:		http://qucs.sourceforge.net/
 License:	GPL+
 Group: 		Applications/Engineering
@@ -20,6 +21,7 @@ e.g. DC, AC, S-parameter and harmonic balance analysis.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 [ -n "$QTDIR" ] || . %{_sysconfdir}/profile.d/qt.sh
@@ -50,6 +52,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Sun May 03 2009 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.15-2
+- Correct a problem in digital simulation
+
 * Fri May 01 2009 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.15-1
 - Update to 0.0.15
 
