@@ -1,0 +1,11 @@
+--- qucs-0.0.15/qucs/qucsdigi	2008-09-25 21:15:57.000000000 +0200
++++ qucs-0.0.15/qucs/qucsdigi	2009-05-03 10:05:02.000000000 +0200
+@@ -60,7 +60,7 @@
+ LIBS=`freehdl-config --libtool`
+ IEEELIBS=`freehdl-config --ieee`
+ LDFLAGS=`freehdl-config --ldflags`
+-LIBTOOL=`freehdl-config --linker`
++LIBTOOL=`freehdl-config --libtool`
+ 
+ cp $NAME digi.vhdl
+ NAME="digi"
