@@ -1,8 +1,8 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.15
-Release: 	4%{?dist}
-Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
+Release: 	5%{?dist}
+Source0:	http://dowanloads.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://qucs.sourceforge.net/
 License:	GPL+
@@ -30,17 +30,22 @@ make %{?_smp_mflags}
 # that the builder has root privileges
 %install
 rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+make INSTALL="%{_bindir}/install -p" install DESTDIR=$RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/applications
 desktop-file-install --vendor fedora \
 	--dir ${RPM_BUILD_ROOT}%{_datadir}/applications \
 	--add-category X-Fedora \
 	%{SOURCE1}
+
+# support of ADMS
+mkdir %{buildroot}%{_datadir}/%{name}/adms
+cp -p ./qucs-core/src/components/verilog/*.xml %{buildroot}%{_datadir}/%{name}/adms
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 
-%files 
+%files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/qucs*
@@ -50,6 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Sat Aug 21 2010 Chitlesh Goorah <chitlesh [AT] fedoraproject DOT org> - 0.0.15-5
+- Patch no longer needed with freehdl-0.0.7
+
 * Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.15-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
@@ -112,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Jan 23 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.8-1
 - Update to 0.0.8
 - Add -ffriend-injection to $RPM_OPT_FLAGS for building against gcc-4.1
- 
+
 * Fri Nov 4 2005 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.7-8
 - Modify ctaegories in qucs.desktop
 
