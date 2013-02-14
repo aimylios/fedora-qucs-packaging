@@ -1,7 +1,7 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.16
-Release: 	3%{?dist}
+Release: 	4%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 # Using the tr1 complex feature breaks building
@@ -53,6 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.16-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.16-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
