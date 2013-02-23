@@ -36,7 +36,7 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/applications
 desktop-file-install \
-%if 0%{?fedora} && 0%{?fedora} < 19
+%if (0%{?fedora} && 0%{?fedora} < 19) || (0%{?rhel} && 0%{?rhel} < 7)
 	--vendor fedora \
 %endif
 	--dir ${RPM_BUILD_ROOT}%{_datadir}/applications \
