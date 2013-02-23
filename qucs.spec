@@ -1,7 +1,7 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.16
-Release: 	4%{?dist}
+Release: 	5%{?dist}
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 # Using the tr1 complex feature breaks building
@@ -35,7 +35,10 @@ make %{?_smp_mflags}
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/applications
-desktop-file-install --vendor fedora \
+desktop-file-install \
+%if 0%{?fedora} && 0%{?fedora} < 19
+	--vendor fedora \
+%endif
 	--dir ${RPM_BUILD_ROOT}%{_datadir}/applications \
 	--add-category X-Fedora \
 	%{SOURCE1}
@@ -53,6 +56,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Sat Feb 23 2013 Toshio Kuratomi <toshio@fedoraproject.org> - 0.0.16-5
+- Remove --vendor from desktop-file-install https://fedorahosted.org/fesco/ticket/1077
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.16-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
