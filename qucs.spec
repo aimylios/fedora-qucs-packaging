@@ -1,14 +1,17 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.16
-Release: 	5%{?dist}
+Release: 	6%{?dist}
+License:	GPL+
+Group: 		Applications/Engineering
+URL:		http://qucs.sourceforge.net/
+
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 # Using the tr1 complex feature breaks building
 Patch0:         qucs-disable-tr1.patch
-URL:		http://qucs.sourceforge.net/
-License:	GPL+
-Group: 		Applications/Engineering
+Patch1:         qucs-aarch64.patch
+
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: desktop-file-utils
 BuildRequires: qt3-devel
@@ -23,6 +26,7 @@ e.g. DC, AC, S-parameter and harmonic balance analysis.
 %prep
 %setup -q
 %patch0 -p0 -b .disable-tr1
+%patch1 -p1 -b .aarch64
 
 %build
 [ -n "$QTDIR" ] || . %{_sysconfdir}/profile.d/qt.sh
@@ -56,6 +60,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Mon Apr 08 2013 Jaromir Capik <jcapik@redhat.com> - 0.0.16-6
+- aarch64 support (#926417)
+- fixing bogus date in the changelog
+
 * Sat Feb 23 2013 Toshio Kuratomi <toshio@fedoraproject.org> - 0.0.16-5
 - Remove --vendor from desktop-file-install https://fedorahosted.org/fesco/ticket/1077
 
@@ -138,7 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 * Fri Nov 4 2005 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.7-8
 - Modify ctaegories in qucs.desktop
 
-* Tue Oct 19 2005 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.7-7
+* Wed Oct 19 2005 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.7-7
 - Add qucs-0.0.7-2.diff for the x86_64 target
 
 * Tue Oct 18 2005 Ralf Corsepius <rc040203@freenet.de> - 0.0.7-6
