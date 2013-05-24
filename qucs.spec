@@ -1,7 +1,7 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.16
-Release: 	6%{?dist}
+Release: 	7%{?dist}
 License:	GPL+
 Group: 		Applications/Engineering
 URL:		http://qucs.sourceforge.net/
@@ -12,10 +12,10 @@ Source1:	%{name}.desktop
 Patch0:         qucs-disable-tr1.patch
 Patch1:         qucs-aarch64.patch
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: desktop-file-utils
 BuildRequires: qt3-devel
 Requires: freehdl, perl, iverilog
+Requires: electronics-menu
 
 
 %description
@@ -36,7 +36,6 @@ make %{?_smp_mflags}
 # install will be a bit complicated because we are not assured
 # that the builder has root privileges
 %install
-rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/applications
 desktop-file-install \
@@ -46,12 +45,9 @@ desktop-file-install \
 	--dir ${RPM_BUILD_ROOT}%{_datadir}/applications \
 	--add-category X-Fedora \
 	%{SOURCE1}
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 
-%files 
-%defattr(-,root,root,-)
+%files
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/qucs*
 %{_bindir}/ps2sp*
@@ -60,6 +56,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Fri May 24 2013 Jaromir Capik <jcapik@redhat.com> - 0.0.16-7
+- Adding electronics-menu in the requires
+- Minor spec file changes according to the latest guidelines
+
 * Mon Apr 08 2013 Jaromir Capik <jcapik@redhat.com> - 0.0.16-6
 - aarch64 support (#926417)
 - fixing bogus date in the changelog
