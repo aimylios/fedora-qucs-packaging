@@ -1,19 +1,15 @@
 Summary:	Circuit simulator
 Name: 		qucs
-Version:	0.0.16
-Release: 	7%{?dist}
+Version:	0.0.17
+Release: 	1%{?dist}
 License:	GPL+
 Group: 		Applications/Engineering
 URL:		http://qucs.sourceforge.net/
 
-Source0:	http://ovh.dl.sourceforge.net/sourceforge/qucs/%{name}-%{version}.tar.gz
-Source1:	%{name}.desktop
-# Using the tr1 complex feature breaks building
-Patch0:         qucs-disable-tr1.patch
-Patch1:         qucs-aarch64.patch
+Source0:	http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: desktop-file-utils
-BuildRequires: qt3-devel
+BuildRequires: qt-devel
 Requires: freehdl, perl, iverilog
 Requires: electronics-menu
 
@@ -25,27 +21,22 @@ e.g. DC, AC, S-parameter and harmonic balance analysis.
 
 %prep
 %setup -q
-%patch0 -p0 -b .disable-tr1
-%patch1 -p1 -b .aarch64
+
+# fixing the icon path
+sed -i 's|Icon=/usr/share/pixmaps|Icon=/usr/share/qucs/bitmaps|' debian/%{name}.desktop
 
 %build
-[ -n "$QTDIR" ] || . %{_sysconfdir}/profile.d/qt.sh
 %configure --disable-dependency-tracking --enable-debug
 make %{?_smp_mflags}
 
-# install will be a bit complicated because we are not assured
-# that the builder has root privileges
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/applications
-desktop-file-install \
-%if (0%{?fedora} && 0%{?fedora} < 19) || (0%{?rhel} && 0%{?rhel} < 7)
-	--vendor fedora \
-%endif
-	--dir ${RPM_BUILD_ROOT}%{_datadir}/applications \
-	--add-category X-Fedora \
-	%{SOURCE1}
+make install DESTDIR=%{buildroot}
+install -d %{buildroot}%{_datadir}/applications
 
+desktop-file-install \
+    --add-category "X-Fedora" \
+    --add-category "Engineering" \
+    debian/%{name}.desktop
 
 %files
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
@@ -54,8 +45,20 @@ desktop-file-install \
 %{_datadir}/%{name}
 %{_datadir}/applications/*
 %{_mandir}/man1/*
+# the following binaries were introduced in 0.0.17 (repoquery shows no conflicts with other pkgs)
+%{_bindir}/alter
+%{_bindir}/asco
+%{_bindir}/asco-test
+%{_bindir}/log
+%{_bindir}/monte
+%{_bindir}/postp
+%{_bindir}/rosen
 
 %changelog
+* Mon Jun 24 2013 Jaromir Capik <jcapik@redhat.com> - 0.0.17-1
+- Update to 0.0.17
+- Fixing Source0 URL
+
 * Fri May 24 2013 Jaromir Capik <jcapik@redhat.com> - 0.0.16-7
 - Adding electronics-menu in the requires
 - Minor spec file changes according to the latest guidelines
