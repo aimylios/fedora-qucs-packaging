@@ -1,7 +1,7 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.17
-Release: 	1%{?dist}
+Release: 	2%{?dist}
 License:	GPL+
 Group: 		Applications/Engineering
 URL:		http://qucs.sourceforge.net/
@@ -55,6 +55,9 @@ desktop-file-install \
 %{_bindir}/rosen
 
 %changelog
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.17-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Mon Jun 24 2013 Jaromir Capik <jcapik@redhat.com> - 0.0.17-1
 - Update to 0.0.17
 - Fixing Source0 URL
