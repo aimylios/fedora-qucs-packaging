@@ -1,12 +1,14 @@
 Summary:	Circuit simulator
 Name: 		qucs
 Version:	0.0.17
-Release: 	2%{?dist}
+Release: 	3%{?dist}
 License:	GPL+
 Group: 		Applications/Engineering
 URL:		http://qucs.sourceforge.net/
 
 Source0:	http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
+
+Patch0:		qucs-format-security.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: qt-devel
@@ -21,6 +23,8 @@ e.g. DC, AC, S-parameter and harmonic balance analysis.
 
 %prep
 %setup -q
+
+%patch0 -p1
 
 # fixing the icon path
 sed -i 's|Icon=/usr/share/pixmaps|Icon=/usr/share/qucs/bitmaps|' debian/%{name}.desktop
@@ -55,6 +59,9 @@ desktop-file-install \
 %{_bindir}/rosen
 
 %changelog
+* Wed Feb 05 2014 Jaromir Capik <jcapik@redhat.com> - 0.0.17-3
+- Fixing format-security flaws (#1037299)
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.17-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
