@@ -10,6 +10,7 @@ Source0: http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{n
 
 BuildRequires: desktop-file-utils
 BuildRequires: qt-devel
+BuildRequires: flex
 Requires: freehdl, perl, iverilog
 Requires: electronics-menu
 
