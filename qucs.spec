@@ -1,14 +1,12 @@
-Summary:	Circuit simulator
-Name: 		qucs
-Version:	0.0.17
-Release: 	5%{?dist}
-License:	GPL+
-Group: 		Applications/Engineering
-URL:		http://qucs.sourceforge.net/
+Summary: Circuit simulator
+Name:    qucs
+Version: 0.0.18
+Release: 1%{?dist}
+License: GPL+
+Group:   Applications/Engineering
+URL:     http://qucs.sourceforge.net/
 
-Source0:	http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
-
-Patch0:		qucs-format-security.patch
+Source0: http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: desktop-file-utils
 BuildRequires: qt-devel
@@ -21,17 +19,42 @@ Qucs is a circuit simulator with graphical user interface.  The
 software aims to support all kinds of circuit simulation types,
 e.g. DC, AC, S-parameter and harmonic balance analysis.
 
+
+%package lib
+Summary:  Qucs library
+Group:    Development/Libraries
+
+
+%description lib
+Qucs circuit simulator library
+
+
+%package devel
+Summary:  Qucs development headers
+Group:    Development/Libraries
+Requires: %{name}-lib%{?_isa} = %{version}-%{release}
+
+
+%description devel
+Qucs circuit simulator development headers
+
+
 %prep
 %setup -q
-
-%patch0 -p1
 
 # fixing the icon path
 sed -i 's|Icon=/usr/share/pixmaps|Icon=/usr/share/qucs/bitmaps|' debian/%{name}.desktop
 
+
 %build
 %configure --disable-dependency-tracking --enable-debug
+
+# remove rpath
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' qucs-core/libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' qucs-core/libtool
+
 make %{?_smp_mflags}
+
 
 %install
 make install DESTDIR=%{buildroot}
@@ -41,6 +64,7 @@ desktop-file-install \
     --add-category "X-Fedora" \
     --add-category "Engineering" \
     debian/%{name}.desktop
+
 
 %files
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
@@ -57,8 +81,26 @@ desktop-file-install \
 %{_bindir}/monte
 %{_bindir}/postp
 %{_bindir}/rosen
+# introduced in 0.0.18
+%{_bindir}/admsCheck
+%{_bindir}/admsXml
+%{_datadir}/icons/*
+
+
+%files lib
+%{_libdir}/libqucs.so.*
+
+
+%files devel
+%{_includedir}/*
+%{_libdir}/libqucs.so
+%{_libdir}/libqucs.la
+
 
 %changelog
+* Tue Sep 02 2014 Jaromir Capik <jcapik@redhat.com> - 0.0.18-1
+- Update to 0.0.18
+
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.17-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
@@ -189,5 +231,3 @@ desktop-file-install \
 
 * Fri Dec 10 2004 Wojciech Kazubski <wk@ire.pw.edu.pl>
 - version 0.0.4 for Fedora Core 3
-
-# end of file
