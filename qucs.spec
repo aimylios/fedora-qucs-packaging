@@ -1,7 +1,7 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
@@ -49,7 +49,7 @@ sed -i 's|Icon=/usr/share/pixmaps|Icon=/usr/share/qucs/bitmaps|' debian/%{name}.
 
 
 %build
-%configure --disable-dependency-tracking --enable-debug
+%configure --disable-dependency-tracking
 
 # remove rpath
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' qucs-core/libtool
@@ -100,6 +100,9 @@ desktop-file-install \
 
 
 %changelog
+* Wed Sep 10 2014 Jaromir Capik <jcapik@redhat.com> - 0.0.18-2
+- Disabling the debug
+
 * Tue Sep 02 2014 Jaromir Capik <jcapik@redhat.com> - 0.0.18-1
 - Update to 0.0.18
 
