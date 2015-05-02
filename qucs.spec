@@ -1,7 +1,7 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
@@ -100,6 +100,9 @@ desktop-file-install \
 
 
 %changelog
+* Sat May 02 2015 Kalev Lember <kalevlember@gmail.com> - 0.0.18-3
+- Rebuilt for GCC 5 C++11 ABI change
+
 * Wed Sep 10 2014 Jaromir Capik <jcapik@redhat.com> - 0.0.18-2
 - Disabling the debug
 
