@@ -1,7 +1,7 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
@@ -65,6 +65,7 @@ install -d %{buildroot}%{_datadir}/applications
 desktop-file-install \
     --add-category "X-Fedora" \
     --add-category "Engineering" \
+    --set-icon "qucs" \
     debian/%{name}.desktop
 
 
@@ -100,6 +101,9 @@ desktop-file-install \
 
 
 %changelog
+* Wed Jan 13 2016 Jaromir Capik <jcapik@redhat.com> - 0.0.18-5
+- Fixing the icon path (#1279203)
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.18-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
