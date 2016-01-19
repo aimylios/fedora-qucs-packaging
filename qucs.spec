@@ -1,12 +1,14 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
 
 Source0: http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
+
+Patch0: qucs-0.0.18-qucsrescodes-progname-typo.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: qt-devel
@@ -14,6 +16,7 @@ BuildRequires: flex
 BuildRequires: bison
 Requires: freehdl, perl, iverilog
 Requires: electronics-menu
+Requires: mot-adms >= 2.3.4
 
 
 %description
@@ -43,6 +46,8 @@ Qucs circuit simulator development headers
 
 %prep
 %setup -q
+
+%patch0 -p1
 
 # fixing the icon path
 sed -i 's|Icon=/usr/share/pixmaps|Icon=/usr/share/qucs/bitmaps|' debian/%{name}.desktop
@@ -84,9 +89,11 @@ desktop-file-install \
 %{_bindir}/monte
 %{_bindir}/postp
 %{_bindir}/rosen
-# introduced in 0.0.18
-%{_bindir}/admsCheck
-%{_bindir}/admsXml
+# introduced in 0.0.18 - adms provided by mot-adms
+%exclude %{_bindir}/admsCheck
+%exclude %{_bindir}/admsXml
+%exclude %{_mandir}/man1/admsXml.*
+%exclude %{_mandir}/man1/admsCheck.*
 %{_datadir}/icons/*
 
 
@@ -101,6 +108,10 @@ desktop-file-install \
 
 
 %changelog
+* Tue Jan 19 2016 Jaromir Capik <jcapik@redhat.com> - 0.0.18-6
+- Dropping built-in adms and using the system one (#1230751)
+- Fixing the qucrescodes->qucsrescodes program name typo
+
 * Wed Jan 13 2016 Jaromir Capik <jcapik@redhat.com> - 0.0.18-5
 - Fixing the icon path (#1279203)
 

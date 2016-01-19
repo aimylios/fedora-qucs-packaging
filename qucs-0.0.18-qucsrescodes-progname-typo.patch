@@ -1,0 +1,12 @@
+diff -Naur qucs-0.0.18.orig/qucs/qucs_actions.cpp qucs-0.0.18/qucs/qucs_actions.cpp
+--- qucs-0.0.18.orig/qucs/qucs_actions.cpp	2014-08-31 09:20:37.000000000 +0200
++++ qucs-0.0.18/qucs/qucs_actions.cpp	2016-01-19 14:11:49.992134997 +0100
+@@ -841,7 +841,7 @@
+ #elif __APPLE__
+   prog = "qucsrescodes.app/Contents/MacOS/qucsrescodes";
+ #else
+-  prog = "qucrescodes";
++  prog = "qucsrescodes";
+ #endif
+ 
+   QProcess *QucsRes = new QProcess();
