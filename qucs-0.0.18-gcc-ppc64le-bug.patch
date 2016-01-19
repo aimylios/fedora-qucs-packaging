@@ -1,0 +1,46 @@
+--- qucs-0.0.18/qucs-core/src/evaluate.cpp	2014-08-31 09:20:36.000000000 +0200
++++ qucs-0.0.18/qucs-core/src/evaluate.cpp	2016-01-19 14:56:09.373929758 +0100
+@@ -2820,11 +2820,12 @@
+   qucs::vector * Rn   = V (_ARES(2));
+   nr_double_t F = D (_ARES(3));
+   qucs::vector * arc  = V (_ARES(4));
++  qucs::vector N, R, C;
+ 
+   _DEFV ();
+-  qucs::vector N = circuit::z0 / 4 / *Rn * (F - *Fmin) * norm (1 + *Sopt);
+-  qucs::vector R = sqrt (N * N + N * (1 - norm (*Sopt))) / (1 + N);
+-  qucs::vector C = *Sopt / (1 + N);
++  N = circuit::z0 / 4 / *Rn * (F - *Fmin) * norm (1 + *Sopt);
++  R = sqrt (N * N + N * (1 - norm (*Sopt))) / (1 + N);
++  C = *Sopt / (1 + N);
+   qucs::vector * circle = new qucs::vector (C.getSize () * arc->getSize ());
+   int i, a, j; nr_complex_t v;
+   for (i = 0, j = 0; i < C.getSize (); i++) {
+@@ -2899,9 +2900,10 @@
+   _ARMV0 (S);
+   _ARV1 (arc);
+   _DEFV ();
+-  qucs::vector D = norm (S->get (1, 1)) - norm (det (*S));
+-  qucs::vector C = (conj (S->get (1, 1)) - S->get (0, 0) * conj (det (*S))) / D;
+-  qucs::vector R = abs (S->get (0, 1)) * abs (S->get (1, 0)) / D;
++  qucs::vector D_, C, R;
++  D_ = norm (S->get (1, 1)) - norm (det (*S));
++  C = (conj (S->get (1, 1)) - S->get (0, 0) * conj (det (*S))) / D_;
++  R = abs (S->get (0, 1)) * abs (S->get (1, 0)) / D_;
+   qucs::vector * circle = new qucs::vector (S->getSize () * arc->getSize ());
+   int a, d, i; nr_complex_t v;
+   for (i = 0, d = 0; i < S->getSize (); i++) {
+@@ -2930,9 +2932,10 @@
+   _ARMV0 (S);
+   _ARV1 (arc);
+   _DEFV ();
+-  qucs::vector D = norm (S->get (0, 0)) - norm (det (*S));
+-  qucs::vector C = (conj (S->get (0, 0)) - S->get (1, 1) * conj (det (*S))) / D;
+-  qucs::vector R = abs (S->get (0, 1)) * abs (S->get (1, 0)) / D;
++  qucs::vector D_, C, R;
++  D_ = norm (S->get (0, 0)) - norm (det (*S));
++  C = (conj (S->get (0, 0)) - S->get (1, 1) * conj (det (*S))) / D_;
++  R = abs (S->get (0, 1)) * abs (S->get (1, 0)) / D_;
+   qucs::vector * circle = new qucs::vector (S->getSize () * arc->getSize ());
+   int a, d, i; nr_complex_t v;
+   for (i = 0, d = 0; i < S->getSize (); i++) {

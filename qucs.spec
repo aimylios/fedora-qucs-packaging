@@ -1,7 +1,7 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
@@ -9,6 +9,8 @@ URL:     http://qucs.sourceforge.net/
 Source0: http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
 
 Patch0: qucs-0.0.18-qucsrescodes-progname-typo.patch
+# Temporary fix for gcc bug #1299599
+Patch1:  %{name}-%{version}-gcc-ppc64le-bug.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: qt-devel
@@ -48,6 +50,9 @@ Qucs circuit simulator development headers
 %setup -q
 
 %patch0 -p1
+%ifarch ppc64le
+%patch1 -p1
+%endif
 
 # fixing the icon path
 sed -i 's|Icon=/usr/share/pixmaps|Icon=/usr/share/qucs/bitmaps|' debian/%{name}.desktop
@@ -108,6 +113,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue Jan 19 2016 Rafael Fonseca <rdossant@redhat.com> - 0.0.18-7
+- Workaround gcc bug on ppc64le (#1299599)
+
 * Tue Jan 19 2016 Jaromir Capik <jcapik@redhat.com> - 0.0.18-6
 - Dropping built-in adms and using the system one (#1230751)
 - Fixing the qucrescodes->qucsrescodes program name typo
