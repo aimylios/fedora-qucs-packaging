@@ -84,7 +84,8 @@ desktop-file-install \
 
 
 %files
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%license COPYING
+%doc AUTHORS ChangeLog NEWS README TODO
 %{_bindir}/qucs*
 %{_bindir}/ps2sp*
 %{_datadir}/%{name}
