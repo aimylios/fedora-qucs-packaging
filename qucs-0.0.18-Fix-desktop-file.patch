@@ -1,0 +1,27 @@
+From 553a3725d4fbdb599d40d83c24959ae46efa6a24 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Petr=20P=C3=ADsa=C5=99?= <ppisar@redhat.com>
+Date: Fri, 14 Jul 2017 13:36:24 +0200
+Subject: [PATCH] Fix dektop file
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Petr Písař <ppisar@redhat.com>
+---
+ debian/qucs.desktop | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/debian/qucs.desktop b/debian/qucs.desktop
+index a3ccf6a..2760ac0 100644
+--- a/debian/qucs.desktop
++++ b/debian/qucs.desktop
+@@ -11,5 +11,5 @@ Exec=qucs %U
+ Icon=/usr/share/pixmaps/big.qucs.xpm
+ Terminal=false
+ Type=Application
+-Categories=Education;Electronics
++Categories=Education;Electronics;
+ StartupNotify=false
+-- 
+2.9.4
+

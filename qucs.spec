@@ -11,6 +11,8 @@ Source0: http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{n
 Patch0: qucs-0.0.18-qucsrescodes-progname-typo.patch
 # Temporary fix for gcc bug #1299599
 Patch1:  %{name}-%{version}-gcc-ppc64le-bug.patch
+# Desktop file categories must terminate with a semicolon, bug #1424234
+Patch2:  %{name}-0.0.18-Fix-desktop-file.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: qt-devel
@@ -53,6 +55,7 @@ Qucs circuit simulator development headers
 %ifarch ppc64le
 %patch1 -p1
 %endif
+%patch2 -p1
 
 # fixing the icon path
 sed -i 's|Icon=/usr/share/pixmaps|Icon=/usr/share/qucs/bitmaps|' debian/%{name}.desktop
@@ -76,6 +79,7 @@ desktop-file-install \
     --add-category "X-Fedora" \
     --add-category "Engineering" \
     --set-icon "qucs" \
+    --dir=%{buildroot}%{_datadir}/applications \
     debian/%{name}.desktop
 
 
@@ -116,6 +120,7 @@ desktop-file-install \
 * Thu Jul 13 2017 Petr Pisar <ppisar@redhat.com> - 0.0.18-10
 - perl dependency renamed to perl-interpreter
   <https://fedoraproject.org/wiki/Changes/perl_Package_to_Install_Core_Modules>
+- Correct desktop file installation (bug #1424234)
 
 * Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.18-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
