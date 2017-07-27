@@ -1,7 +1,7 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
@@ -118,6 +118,9 @@ desktop-file-install \
 
 
 %changelog
+* Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.18-11
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Thu Jul 13 2017 Petr Pisar <ppisar@redhat.com> - 0.0.18-10
 - perl dependency renamed to perl-interpreter
   <https://fedoraproject.org/wiki/Changes/perl_Package_to_Install_Core_Modules>
