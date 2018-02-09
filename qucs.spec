@@ -1,7 +1,7 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 12%{?dist}
+Release: 13%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
@@ -118,6 +118,9 @@ desktop-file-install \
 
 
 %changelog
+* Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.0.18-13
+- Escape macros in %%changelog
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.18-12
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
@@ -246,7 +249,7 @@ desktop-file-install \
 - Solve typo problem in changelog
 
 * Sat Jun 10 2006 Eric Tanguy <eric.tanguy@univ-nantes.fr> - 0.0.9-3
-- Delete %{_bindir}/qucsdigi.bat which is a windows bat file and useless under linux
+- Delete %%{_bindir}/qucsdigi.bat which is a windows bat file and useless under linux
 - add --disable-dependency-tracking to %%configure
 - add --enable-debug to %%configure to make debuginfo package usefull
 
