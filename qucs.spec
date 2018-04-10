@@ -1,7 +1,7 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 13%{?dist}
+Release: 14%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
@@ -118,6 +118,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue Apr 10 2018 Filipe Rosset <rosset.filipe@gmail.com> - 0.0.18-14
+- rebuilt due new iverilog
+
 * Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.0.18-13
 - Escape macros in %%changelog
 
