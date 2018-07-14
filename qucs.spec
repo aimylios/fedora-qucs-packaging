@@ -1,7 +1,7 @@
 Summary: Circuit simulator
 Name:    qucs
 Version: 0.0.18
-Release: 14%{?dist}
+Release: 15%{?dist}
 License: GPL+
 Group:   Applications/Engineering
 URL:     http://qucs.sourceforge.net/
@@ -118,6 +118,9 @@ desktop-file-install \
 
 
 %changelog
+* Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.18-15
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Tue Apr 10 2018 Filipe Rosset <rosset.filipe@gmail.com> - 0.0.18-14
 - rebuilt due new iverilog
 
